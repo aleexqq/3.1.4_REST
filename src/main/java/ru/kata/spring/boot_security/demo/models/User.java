@@ -4,8 +4,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -20,16 +18,12 @@ public class User implements UserDetails {
     private Long id;
 
     @Column(name = "name")
-    @Size(min = 3, max = 100, message = "Длина имени должна быть от 3 до 100 символов")
     private String name;
 
     @Column(name = "email")
-    @Size(min = 3, max = 100, message = "Длина электронной почты должна быть от 3 до 100 символов")
-    @NotEmpty
     private String email;
 
     @Column(name = "password")
-    @Size(min = 3, max = 100, message = "Длина пароля должна быть от 3 до 100 символов")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)

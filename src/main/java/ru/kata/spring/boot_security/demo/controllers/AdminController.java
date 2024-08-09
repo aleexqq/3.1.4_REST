@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.kata.spring.boot_security.demo.models.User;
 import ru.kata.spring.boot_security.demo.services.RoleService;
 import ru.kata.spring.boot_security.demo.services.UserService;
-import ru.kata.spring.boot_security.demo.util.UserValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,13 +17,11 @@ public class AdminController {
 
     private final UserService userService;
     private final RoleService roleService;
-    private final UserValidator userValidator;
 
     @Autowired
-    public AdminController(UserService userService, RoleService roleService, UserValidator userValidator) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
-        this.userValidator = userValidator;
     }
 
 
@@ -32,7 +29,7 @@ public class AdminController {
     public ModelAndView getAdminPage(@RequestParam(value = "id", required = false) Long id) {
         List<User> users = new ArrayList<>();
         ModelAndView modelAndView = new ModelAndView();
-        if (id == null) {
+        if (id == null || userService.getUserById(id) == null) {
             users = userService.allUsers();
             modelAndView.addObject("users", users);
         } else {
@@ -48,7 +45,7 @@ public class AdminController {
     @GetMapping("/findOne")
     @ResponseBody
     public User findOne(@RequestParam Long id) {
-        return userService.findById(id);
+        return userService.getUserById(id);
     }
 
     @PostMapping("/save")

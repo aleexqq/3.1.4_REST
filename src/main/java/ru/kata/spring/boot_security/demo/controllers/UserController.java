@@ -18,7 +18,7 @@ public class UserController {
         UserDetails user = (UserDetails) authentication.getPrincipal();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.addObject("user", user);
-        modelAndView.setViewName("info");
+        modelAndView.setViewName("user");
         return modelAndView;
     }
 }
