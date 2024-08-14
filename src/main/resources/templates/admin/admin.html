@@ -14,7 +14,6 @@
     label {
         font-weight: bold;
     }
-
 </style>
 <div th:replace="fragments/header :: header"></div>
 <div class="container-fluid vh-100 mt-3">
@@ -45,7 +44,7 @@
             </ul>
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="userTable" role="tabpanel" aria-labelledby="userTable-tab">
+                <div class="tab-pane show active" id="userTable" role="tabpanel" aria-labelledby="userTable-tab">
                     <div class="card">
                         <h5 class="card-header">All users</h5>
                         <div class="card-body">
@@ -61,33 +60,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="user : ${users}">
-                                    <td th:text="${user.id}"></td>
-                                    <td th:text="${user.email}"></td>
-                                    <td th:text="${user.name}"></td>
-                                    <td>
-                                        <span th:each="role : ${user.roles}" th:text="${role} + ' '"></span>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{admin/findOne/(id=${user.id})}"
-                                           class="btn btn-primary eBtn">Edit</a>
-                                    </td>
-                                    <td>
-                                        <a th:href="@{admin/findOne/(id=${user.id})}"
-                                           class="btn btn-danger dBtn">Delete</a>
-                                    </td>
-                                </tr>
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="newUser" role="tabpanel" aria-labelledby="newUser-tab">
+                <div class="tab-pane" id="newUser" role="tabpanel" aria-labelledby="newUser-tab">
                     <div class="card">
                         <h5 class="card-header">Add new User</h5>
                         <div class="card-body d-flex justify-content-center text-center">
                             <div class="addForm w-25">
-                                <form th:action="@{admin/save}" method="post">
+                                <form>
                                     <input type="hidden" class="form-control" id="add-id" name="id" required>
 
                                     <div class="mb-3">
@@ -127,7 +111,7 @@
 
 <!-- Modal Edit-->
 <div class="editForm">
-    <form th:action="@{/admin/save}" method="post">
+    <form>
         <div class="modal fade" id="userEditDialog" tabindex="-1" aria-labelledby="userEditDialogLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -181,7 +165,7 @@
 
 <!-- Modal Delete-->
 <div class="deleteForm">
-    <form th:action="@{/admin/delete}" method="post">
+    <form>
         <div class="modal fade" id="userDeleteDialog" tabindex="-1" aria-labelledby="userDeleteDialogLabel"
              aria-hidden="true">
             <div class="modal-dialog">
@@ -227,6 +211,7 @@
     </form>
 </div>
 <!-- Modal Delete-->
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
