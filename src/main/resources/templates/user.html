@@ -39,14 +39,6 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td th:text="${user.id}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${user.name}"></td>
-                            <td>
-                                <span th:each="role : ${user.roles}" th:text="${role} + ' '"></span>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -54,5 +46,9 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
+<script type="text/javascript" th:src="@{js/userPage.js}"></script>
 </body>
 </html>
